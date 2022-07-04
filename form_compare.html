@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            *{
+                box-sizing: border-box;
+                margin : 0px;
+            }
+            body{
+                background-image: url("https://i.imgur.com/pKGNUXv.png");
+                background-repeat: repeat;
+                background-position: 0 0;
+                animation: animatedBackground 500s linear infinite;
+            }
+            table{
+                border-collapse: collapse;
+                border-spacing: 0;
+                width: 100%;
+                border: 0;
+                background-color: rgba(25, 0, 255, 0.05);
+                font-size : 17pt;
+            }
+            #table1{
+                margin-left : 37.5%;
+                float: left;
+                width : 25%;
+                z-index : 2;
+            }
+            #table2{
+                margin-left: 65%;
+                float: left;
+                width : 25%;
+                opacity: 0;
+                z-index: 1;
+            }
+            input[type=text]{
+                width: 100%; 
+                background: rgba(255,255,255,0.05);
+                outline: none;
+                box-sizing: border-box;
+                border: none;
+                text-align: center;
+                font-size: 20px;
+                border-spacing: 0px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+            button{
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                background-color: cyan;
+                border:none;
+                font-size: 20px;
+            }
+            td{
+                padding-top : 5px;
+                padding-bottom: 5px;
+            }
+            #submit{
+                height: 50px;
+                font-size: 30px;
+            }
+            a{
+                text-decoration: none;
+                color: black;
+            }
+            label{
+                cursor: pointer;
+            }
+            #click{
+                position: fixed;
+                margin-left: 57.5%;
+                width: 7.5%;
+                text-align: center;
+                background-color: rgba(0, 0, 128, 0.555);
+                color:white;
+                display: none;
+                height: 20px;
+                border-radius: 10px;
+            }
+            input[type=radio]{
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                -ms-appearance: none;
+                -o-appearance: none;
+                appearance: none;
+            }
+            input[type=radio]:checked + label{
+                background: rgba(250, 128, 114, 0.6);
+            }
+            input[type=checkbox]{
+                display: none;
+            }
+            input[type=checkbox]:checked + label{
+                background:rgba(153, 219, 240, 0.6);
+            }
+            @keyframes animatedBackground {
+                from {
+                    background-position: 0 0;
+                }
+                /*use negative width if you want it to flow right to left else and positive for left to right*/
+                to {
+                    background-position: -10000px 0;
+                }
+            }
+            
+        </style>
+    </head>
+    <body>
+        <form id = "myForm" method = "POST" action="/compare">
+            <input type = "hidden" name = "Width" id = "width">
+            <input type = "hidden" name = "Height" id = "height">
+            <table name = "Table1" id = "table1" border="0">
+                <tr>
+                    <td colspan = "3">
+                        <input type = "text" name = "City1" id = "city" required="required" autocomplete="off" autofocus placeholder="Enter City 1" style = "text-transform: capitalize;">
+                    </td>
+                    <td colspan = "4">
+                        <input type = "text" name = "City2" id = "city" required="required" autocomplete="off"  placeholder="Enter City 2" style = "text-transform: capitalize;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Color Threshold
+                    </td>
+                </tr>
+                <tr>
+                    <td style = "width: 175px; color: lightgreen">
+                        Green
+                    </td>
+                    <td>
+                        :
+                    </td>
+                    <td style = "width: 3ch">
+                        X
+                    </td>
+                    <td>
+                        &#60
+                    </td>
+                    <td>
+                        <div id = "bottom_threshold" style = "background-color: white;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style = "color: yellow">
+                        Yellow
+                    </td>
+                    <td>
+                        :
+                    </td>
+                    <td>
+                        <input type = "text" name = "bot_threshold" size = "1" maxlength = "3" style = "background-color: white; max-width: 3ch" id = "bottom_threshold1" oninput = fill_bot() autocomplete="off">
+                    </td>
+                    <td style = "width: 3ch"> 
+                        &#60
+                    </td>
+                    <td style = "width: 3ch">
+                        X
+                    </td>
+                    <td style = "width: 3ch">
+                        &#60
+                    </td>
+                    <td>
+                        <input type = "text" name = "top_threshold" size = "1" maxlength = "3" style = "background-color: white; max-width: 3ch" id = "top_threshold1" oninput = fill_top() autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td style = "color: red">
+                        Red
+                    </td>
+                    <td>
+                        :
+                    </td>
+                    <td style = "width: 3ch">
+                        <div id = "top_threshold" style = "background-color: white;"></div>
+                    </td>
+                    <td style = "width: 3ch">
+                        &#60
+                    </td>
+                    <td>
+                        X
+                    </td>
+                </tr>
+                <tr>
+                    <td style = "text-align: center;" colspan="100%">
+                        <button id = "submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <script>
+            var t1 = document.getElementById("table1");
+            var t2 = document.getElementById("table2");
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            var ram = navigator.deviceMemory;
+            var with_cong = document.getElementById("with_Congestion")
+            if (ram<6){
+                with_cong.setAttribute("disabled", "disabled");
+                document.querySelector("#table1 > tbody > tr:nth-child(3) > td:nth-child(2) > label").style.opacity = "0.5";
+                document.querySelector("#table1 > tbody > tr:nth-child(3) > td:nth-child(2) > label").style.cursor = "context-menu";
+            }
+            t1.style.marginTop = (h-t1.clientHeight)/2 +"px";
+            document.getElementById("width").value = window.innerWidth;
+            document.getElementById("height").value = h;
+            document.getElementById("width").value = w;
+
+            function osm(){
+                t1.style.marginLeft = "25%";
+                t1.style.transitionDuration = "1s";
+                t2.hidden = false;
+                t2.style.marginLeft = "50%";
+                t2.style.opacity = "1";
+                t2.style.transitionDuration = "0.5s";
+                document.getElementById("noSCC").disabled = false;
+                document.getElementById("isSCC").checked = false;
+                document.getElementById("new2").style.opacity= "1";
+                document.getElementById("new2").style.transitionDuration= "1s";
+                document.getElementById("click").style.visibility = "visible";
+                
+            }
+
+            function fill_bot(){
+                var val = document.getElementById("bottom_threshold1").value;
+                document.getElementById("bottom_threshold").innerHTML = val;
+            }
+
+            function fill_top(){
+                var val = document.getElementById("top_threshold1").value;
+                document.getElementById("top_threshold").innerHTML = val;
+            }
+
+            function scenario(){
+                t1.style.marginLeft = "25%";
+                t1.style.transitionDuration = "1s";
+                t2.hidden = false;
+                t2.style.marginLeft = "50%";
+                t2.style.opacity = "1";
+                t2.style.transitionDuration = "0.5s";
+                document.getElementById("noSCC").disabled = true;
+                document.getElementById("isSCC").checked = true;
+                document.getElementById("new2").style.opacity= "0.3";
+                document.getElementById("new2").style.transitionDuration= "1s";
+                document.getElementById("new2").setAttribute("title","Calculation Must Be Strongly Connected");
+                document.getElementById("click").style.visibility = "visible";
+            }
+        </script>
+    </body>
+</html>

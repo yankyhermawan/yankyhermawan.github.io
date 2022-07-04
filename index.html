@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body{
+            background-image: url("https://i.imgur.com/pKGNUXv.png");
+            background-repeat: repeat;
+            background-position: 0 0;
+            animation: animatedBackground 500s linear infinite;
+        }
+        table{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        td{
+            width : 25%;
+            height: 50px;
+            text-align: center;
+        }
+        button{
+            width:100%;
+            height: 100%;
+            cursor: pointer;
+            background-color:rgb(0, 247, 255);
+            border:0px;
+            font-size: 20px;
+            font-family:'Times New Roman', Times, serif;
+        }
+        button:hover{
+            background-color: lightpink;
+            transition: 0.3s;
+        }
+        @keyframes animatedBackground {
+        from {
+            background-position: 0 0;
+        }
+        /*use negative width if you want it to flow right to left else and positive for left to right*/
+        to {
+            background-position: -10000px 0;
+        }
+        }
+    </style>
+    <body>        
+        <form id = "myForm" method = "POST">
+            <input type = "hidden" name = "Width" id = "width">
+            <input type = "hidden" name = "Height" id = "height">
+            <table border = 1 id = "table">
+                <tr>
+                    <td onclick = otherCity() id = "other"><button>Search City</button></td>
+                    <td onclick = myCity() id = "compare"><button>Compare</button></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+    <script>
+        var form = document.getElementById("myForm");
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        var t = document.getElementById("table");
+        var th = document.getElementById("table").clientHeight;
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        document.getElementById("height").value = h;
+        document.getElementById("width").value = w;
+        t.style.marginTop = (h-th)/2 + "px";   
+
+        function otherCity(){
+            form.setAttribute("action", "./form")
+        }
+        function myCity(){
+            form.setAttribute("action", "./form_compare")
+        }
+    </script>
+</html>

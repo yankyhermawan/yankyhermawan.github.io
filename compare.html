@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        html, body{
+            width: 99%;
+            height: 99%;
+        }
+        canvas{
+            border: 1px solid black;
+            position: absolute;
+            width: 99%;
+            height: 99%;
+        }
+        div{
+            position: absolute;
+            width: 50%;
+            height: 100%;
+        }
+        #container2{
+            margin-left: 50%;
+        }
+        #city1, #city2, #info1, #info2{
+            background-color: rgba(1,255,255,0.4);
+            height: auto;
+            padding: 10px;
+        }
+        #city1, #city2{
+            z-index: 10;
+            margin-top : 10px;
+            margin-left: 10px;
+            border:1px solid black;
+            position: absolute;
+            width: auto;
+        }
+        #info1{
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            border: 1px solid black;
+            margin-bottom:10px;
+            margin-right: 50.5%;
+            padding:15px;
+            background-color:rgba(1, 255, 255, 0.4);
+            width: 10%;
+            font-family: 'Poppins', sans-serif;
+            line-height: 0.9;
+            font-weight: bold;
+        }
+        #info2{
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            border: 1px solid black;
+            margin-bottom:10px;
+            margin-right: 20px;
+            padding:15px;
+            background-color:rgba(1, 255, 255, 0.4);
+            width: auto;
+            font-family: 'Poppins', sans-serif;
+            line-height: 0.9;
+            font-weight: bold;
+        }
+        canvas{
+            text-align : center;
+            display : block;
+            border : 1px solid #000000;
+            zoom : 1;
+            zoom : 100%;
+            transform : scaleY(-1);
+        }
+    </style>
+</head>
+<body>
+    <div id = "container1">
+        <div id = "city1">
+            City
+        </div>
+        <canvas id = "canvas1">
+
+        </canvas>
+        <div id = "info1">
+            <span id = "country1">
+            </span><br><br>
+            <span id = "population1">
+            </span><br><br>
+            <span id = "rank1">
+            </span>
+        </div>
+    </div>
+    <div id = "container2">
+        <div id = "city2">
+            City
+        </div>
+        <canvas id = "canvas2">
+
+        </canvas>
+        <div id = "info2">
+            <span id = "country2">
+            </span><br><br>
+            <span id = "population2">
+            </span><br><br>
+            <span id = "rank2">
+            </span>
+        </div>
+    </div>
+</body>
+<script>
+    var canvas_width = document.getElementById("canvas1").offsetWidth;
+    var canvas_height = document.getElementById("canvas1").offsetHeight;
+    var info1_width = document.getElementById("info1").offsetWidth;
+    var info1_height = document.getElementById("info1").offsetHeight;
+    var info2_width = document.getElementById("info2").offsetWidth;
+    var info2_height = document.getElementById("info2").offsetHeight;
+    document.getElementById("info1").style.marginLeft = (canvas_width - info1_width) + "px";
+    document.getElementById("info2").style.marginLeft = (canvas_width - info2_width) + "px";
+    document.getElementById("info1").style.marginTop = (canvas_height - info1_height) + "px";
+    document.getElementById("info2").style.marginTop = (canvas_height - info2_height) + "px";
+    var low = "#03fc30";
+    var mid = "#f0fc03";
+    var high = "#ff0000";
+    //{js1}
+    //{js2}
+
+    document.getElementById("city1").innerHTML = city1;
+    document.getElementById("country1").innerHTML = country1;
+    document.getElementById("population1").innerHTML = pop1;
+    document.getElementById("rank1").innerHTML = ifn_rank1;
+
+    document.getElementById("city2").innerHTML = city2;
+    document.getElementById("country2").innerHTML = country2;
+    document.getElementById("population2").innerHTML = pop2;
+    document.getElementById("rank2").innerHTML = ifn_rank2;
+
+</script>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background-image: url("https://i.imgur.com/pKGNUXv.png");
+            background-repeat: repeat;
+            background-position: 0 0;
+            animation: animatedBackground 500s linear infinite;
+        }
+        html,body{
+            width : 99%;
+            height : 99%;
+        }
+        canvas{
+            text-align : center;
+            display : block;
+            border : 1px solid #000000;
+            zoom : 1;
+            zoom : 100%;
+            transform : scaleY(-1);
+            z-index: 1;
+            background-color: rgba(255,255,255,0.8);
+        }
+        #sidenav {
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            padding: 0px;
+            margin: 0px;
+            background-color: #fff;
+            width: 0px;
+            transition : 1s;
+            z-index: 2;
+        }
+        #menuBar {
+            position : fixed;
+            top : 10px;
+            right : 25px;
+            padding : 0px;
+            margin : 0px;
+            transition : 1s;
+        }
+        #content{
+            opacity: 0;
+            width : 200px;
+            padding:0px;
+            left: 0px;
+            transition: 1s;
+            background-color: grey;
+        }
+        #info{
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            border: 1px solid black;
+            margin-bottom:10px;
+            margin-right: 20px;
+            padding:15px;
+            background-color:rgba(1, 255, 255, 0.4);
+            width: auto;
+            font-family: 'Poppins', sans-serif;
+            line-height: 0.9;
+            font-weight: bold;
+        }
+        #option{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size:15pt;
+            margin-top : 20px;
+            margin-bottom : 20px;
+            height: 50px;
+            width: 100%;
+            text-align: center;
+            display: table;
+        }
+        #option:hover{
+            cursor:pointer;
+            background: rgba(40, 40, 41, 0.6);
+            color:white;
+        }
+        input[type=radio]{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            -o-appearance: none;
+            visibility: hidden;
+        }
+        input[type=radio]:hover{
+            cursor : pointer;
+        }
+        #other_city{
+            text-align: center;
+            height: 50px;
+            display : table;
+            font-size: 16pt;
+            width: 100%;
+        }
+        #other_city:hover{
+            background-color: rgb(52, 53, 54);
+        }
+        #close{
+            margin-left: 160px;
+            font-size : 25px;
+        }
+        #close:hover {
+            cursor: pointer;
+        }
+        .Choice{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        a{
+            display: table-cell;
+            vertical-align: middle;
+            text-decoration: none;
+            color:black;
+        }
+        a:hover{
+            color:rgb(98, 183, 216);
+        }
+        @keyframes animatedBackground {
+        from {
+            background-position: 0 0;
+        }
+        /*use negative width if you want it to flow right to left else and positive for left to right*/
+        to {
+            background-position: -10000px 0;
+        }
+        }
+        #custom_content{
+            display: none;
+        }
+    </style>
+    <head>
+    </head>
+    <body>
+        <div id = "zoom">
+            <canvas id = "myCanvas"></canvas>
+        </div>
+        <div id = "info">
+            <span id = "city">
+            </span><br><br>
+            <span id = "country">
+            </span><br><br>
+            <span id = "population">
+            </span><br><br>
+            <span id = "rank">
+            </span>
+        </div>
+        <div id = "sidenav">
+            <div id = "menuBar">
+                <span id = "burger" style="font-size:20px;cursor:pointer;" onclick=sideNav()>Option</span>
+            </div>
+            <div id = "content">
+                <div id = "closeBtn">
+                    <span id = "close" onclick = closeButton()>&#10006;</span>
+                </div>
+                <div id = "other_city">
+                    <a href = "/">Try Another City</a>
+                </div>
+                <form method = "POST">
+                    <label>
+                        <div id = "option" class = "Option">
+                            <input type = "radio" id = "choice1" name = "choice" value = "congestion" required = "required" onclick = submit()>
+                            <span id = "choice" class = "Choice" >Congestion</span>
+                        </div>
+                    </label>
+                    <label>
+                        <div id = "option" class = "Option">
+                            <input type = "radio" id = "choice2" name = "choice" value = "link_speed" onclick = submit()>
+                            <span id = "choice" class = "Choice">Link Speed</span>
+                        </div>
+                    </label>
+                    <label>
+                        <div id = "option" class = "Option">
+                            <input type = "radio" id = "choice3" name = "choice" value = "capacity" onclick = submit()>
+                            <span id = "choice" class = "Choice">Link Density</span>
+                        </div>
+                    </label>
+                    <label>
+                        <div id = "option" class = "Option">
+                            <input type = "radio" id = "choice4" name = "choice" value = "flow" onclick = submit()>
+                            <span id = "choice" class = "Choice">Link Flow</span>
+                        </div>
+                    </label>
+                </form>
+                <div id = "custom">
+                    <hr style = "border: 10px solid black;" id = "hrtag">
+                    <p id = "customize" style = "font-weight: bold; font-size: 16pt; text-align: center; margin: 10px 5px">Customize</p>
+                    <table style="width:100%; text-align: center; line-height: 2; font-weight: bold; font-size: 14pt;" id = "table_color">
+                        <tr>
+                            <td><input type = "color" id = "low_color" oninput = colorChange() value="#00ff00"></td>
+                            <td><input type = "color" id = "mid_color" oninput = colorChange() value ="#faff00"></td>
+                            <td><input type = "color" id = "high_color" oninput = colorChange() value = "#ff0000"></td>
+                        </tr>
+                        <tr>
+                            <td>Low</td>
+                            <td>Mid</td>
+                            <td>High</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        var sidenav = document.getElementById("sidenav");
+        var menuBar = document.getElementById("menuBar");
+        var content = document.getElementById("content");
+        var opt = document.getElementsByClassName("Option");
+        var custom = document.getElementById("custom_content");
+        var close = document.getElementById("closeBtn").clientHeight;
+        var link = document.getElementById("other_city").clientHeight;
+        var mrgn = (h-close-link)/4;
+        sidenav.style.marginTop = "0px";
+        for (var i = 0; i < opt.length; i++){
+            opt[i].style.marginTop = mrgn/15 + "px";
+            opt[i].style.marginBottom = mrgn/15 + "px";
+        }
+        function colorChange(){
+            var low = document.getElementById("low_color").value;
+            var mid = document.getElementById("mid_color").value;
+            var high = document.getElementById("high_color").value;
+            //{js}
+            document.getElementById("city").innerHTML = city;
+            document.getElementById("country").innerHTML = country;
+            document.getElementById("population").innerHTML = pop;
+            document.getElementById("rank").innerHTML = ifn_rank;
+        }
+        window.onload = colorChange();
+        function sideNav(){
+            sidenav.style.width = "200px";
+            sidenav.style.marginRight = 0.01*w + "px";            
+            menuBar.style.right = "225px";            
+            content.style.border = "1px solid #000000";
+            content.style.opacity = "1";
+            content.style.height = 0.98*h + "px";
+            content.style.marginTop = 0.01*h + "px";
+            content.style.marginBottom = 0.01*h + "px";
+            menuBar.style.display = "none";
+            custom.style.display = "none";
+        }
+        function closeButton() {
+            sidenav.style.width = "0px";
+            menuBar.style.right = "25px";
+            content.style.border = "none";
+            content.style.opacity = "0"; 
+            menuBar.style.display = "block";
+            content.style.transitionDuration = "1s";
+            custom.style.display = "none";
+        }
+
+        var scale = 1,
+        panning = false,
+        pointX = 0,
+        pointY = 0,
+        start = { x: 0, y: 0 },
+        zoom = document.getElementById("zoom");
+
+      function setTransform() {
+        zoom.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
+      }
+
+      zoom.onmousedown = function (e) {
+        e.preventDefault();
+        start = { x: e.clientX - pointX, y: e.clientY - pointY };
+        panning = true;
+      }
+
+      zoom.onmouseup = function (e) {
+        panning = false;
+      }
+
+      zoom.onmousemove = function (e) {
+        e.preventDefault();
+        if (!panning) {
+          return;
+        }
+        pointX = (e.clientX - start.x);
+        pointY = (e.clientY - start.y);
+        setTransform();
+      }
+
+      zoom.onwheel = function (e) {
+        e.preventDefault();
+        var xs = (e.clientX - pointX) / scale,
+          ys = (e.clientY - pointY) / scale,
+          delta = (e.wheelDelta ? e.wheelDelta : -e.deltaY);
+        (delta > 0) ? (scale *= 1.2) : (scale /= 1.2);
+        pointX = e.clientX - xs * scale;
+        pointY = e.clientY - ys * scale;
+
+        setTransform();
+      }
+    </script>
+</html>
