@@ -55,8 +55,9 @@
         var h = window.innerHeight;
         var t = document.getElementById("table");
         var th = document.getElementById("table").clientHeight;
-        var w = window.innerWidth;
-        var h = window.innerHeight;
+        var bh = document.getElementById("myForm");
+
+        bh.style.marginTop = (h-bh.offsetHeight)/2 + "px";
         document.getElementById("height").value = h;
         document.getElementById("width").value = w;
         t.style.marginTop = (h-th)/2 + "px";   
