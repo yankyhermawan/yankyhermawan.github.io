@@ -1,0 +1,94 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+}
+body {
+	background-image: url("https://i.imgur.com/pKGNUXv.png");
+	background-repeat: repeat;
+	background-position: 0 0;
+	animation: animatedBackground 500s linear infinite;
+	height: 100vh;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	border: 0;
+	background-color: rgba(25, 0, 255, 0.05);
+	font-size: 17pt;
+}
+#table1 {
+	margin-left: 37.5%;
+	float: left;
+	width: 25%;
+	z-index: 2;
+}
+input[type="text"] {
+	width: 50%;
+	background: white;
+	outline: none;
+	box-sizing: border-box;
+	border: none;
+	text-align: center;
+	font-size: 30px;
+	border-spacing: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#submit {
+	width: 50%;
+	height: 100%;
+	cursor: pointer;
+	border: none;
+	font-size: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+td {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+#submit {
+	height: 50px;
+	font-size: 30px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+label {
+	cursor: pointer;
+}
+@keyframes animatedBackground {
+	from {
+		background-position: 0 0;
+	}
+	/*use negative width if you want it to flow right to left else and positive for left to right*/
+	to {
+		background-position: -10000px 0;
+	}
+}
+
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 50px;
+}
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+	width: 50%;
+}
+
+.sub-container {
+	background-color: rgb(47, 241, 255, 0.8);
+	padding: 20px;
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+}

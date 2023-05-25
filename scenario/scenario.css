@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: url("https://i.imgur.com/pKGNUXv.png");
+	background-repeat: repeat;
+	background-position: 0 0;
+	animation: animatedBackground 500s linear infinite;
+}
+html,
+body {
+	width: 99%;
+	height: 99%;
+}
+canvas {
+	text-align: center;
+	display: block;
+	border: 1px solid #000000;
+	zoom: 1;
+	zoom: 100%;
+	transform: scaleY(-1);
+	z-index: 1;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+#sidenav {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	padding: 0px;
+	margin: 0px;
+	background-color: #fff;
+	width: 0px;
+	transition: 1s;
+	z-index: 2;
+}
+#menuBar {
+	position: fixed;
+	top: 10px;
+	right: 25px;
+	padding: 0px;
+	margin: 0px;
+	transition: 1s;
+}
+#content {
+	opacity: 0;
+	width: 200px;
+	padding: 0px;
+	left: 0px;
+	transition: 1s;
+	background-color: grey;
+}
+#info {
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	border: 1px solid black;
+	margin-bottom: 10px;
+	margin-right: 20px;
+	padding: 15px;
+	background-color: rgba(1, 255, 255, 0.4);
+	width: auto;
+	font-family: "Poppins", sans-serif;
+	line-height: 0.9;
+	font-weight: bold;
+}
+#option {
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+	font-size: 15pt;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height: 50px;
+	width: 100%;
+	text-align: center;
+	display: table;
+}
+#option:hover {
+	cursor: pointer;
+	background: rgba(40, 40, 41, 0.6);
+	color: white;
+}
+input[type="radio"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	visibility: hidden;
+}
+input[type="radio"]:hover {
+	cursor: pointer;
+}
+#other_city {
+	text-align: center;
+	height: 50px;
+	display: table;
+	font-size: 16pt;
+	width: 100%;
+}
+#other_city:hover {
+	background-color: rgb(52, 53, 54);
+}
+#close {
+	margin-left: 160px;
+	font-size: 25px;
+}
+#close:hover {
+	cursor: pointer;
+}
+.Choice {
+	display: table-cell;
+	vertical-align: middle;
+}
+a {
+	display: table-cell;
+	vertical-align: middle;
+	text-decoration: none;
+	color: black;
+}
+a:hover {
+	color: rgb(98, 183, 216);
+}
+@keyframes animatedBackground {
+	from {
+		background-position: 0 0;
+	}
+	/*use negative width if you want it to flow right to left else and positive for left to right*/
+	to {
+		background-position: -10000px 0;
+	}
+}
+#custom_content {
+	display: none;
+}

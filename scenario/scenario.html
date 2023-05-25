@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="./scenario.css" />
+	</head>
+	<body>
+		<div id="zoom">
+			<canvas id="myCanvas"></canvas>
+		</div>
+		<div id="info">
+			<span id="city"> </span><br /><br />
+			<span id="country"> </span><br /><br />
+			<span id="population"> </span><br /><br />
+			<span id="rank"> </span>
+		</div>
+		<div id="sidenav">
+			<div id="menuBar">
+				<span
+					id="burger"
+					style="font-size: 20px; cursor: pointer"
+					onclick="sideNav()"
+					>Option</span
+				>
+			</div>
+			<div id="content">
+				<div id="closeBtn">
+					<span id="close" onclick="closeButton()">&#10006;</span>
+				</div>
+				<div id="other_city">
+					<a href="/">Try Another City</a>
+				</div>
+				<form method="POST">
+					<label>
+						<div id="option" class="Option">
+							<input
+								type="radio"
+								id="choice1"
+								name="choice"
+								value="congestion"
+								required="required"
+								onclick="submit()"
+							/>
+							<span id="choice" class="Choice">Congestion</span>
+						</div>
+					</label>
+					<label>
+						<div id="option" class="Option">
+							<input
+								type="radio"
+								id="choice2"
+								name="choice"
+								value="link_speed"
+								onclick="submit()"
+							/>
+							<span id="choice" class="Choice">Link Speed</span>
+						</div>
+					</label>
+					<label>
+						<div id="option" class="Option">
+							<input
+								type="radio"
+								id="choice3"
+								name="choice"
+								value="capacity"
+								onclick="submit()"
+							/>
+							<span id="choice" class="Choice">Link Density</span>
+						</div>
+					</label>
+					<label>
+						<div id="option" class="Option">
+							<input
+								type="radio"
+								id="choice4"
+								name="choice"
+								value="flow"
+								onclick="submit()"
+							/>
+							<span id="choice" class="Choice">Link Flow</span>
+						</div>
+					</label>
+				</form>
+				<div id="custom">
+					<hr style="border: 10px solid black" id="hrtag" />
+					<p
+						id="customize"
+						style="
+							font-weight: bold;
+							font-size: 16pt;
+							text-align: center;
+							margin: 10px 5px;
+						"
+					>
+						Customize
+					</p>
+					<table
+						style="
+							width: 100%;
+							text-align: center;
+							line-height: 2;
+							font-weight: bold;
+							font-size: 14pt;
+						"
+						id="table_color"
+					>
+						<tr>
+							<td>
+								<input
+									type="color"
+									id="low_color"
+									oninput="colorChange()"
+									value="#00ff00"
+								/>
+							</td>
+							<td>
+								<input
+									type="color"
+									id="mid_color"
+									oninput="colorChange()"
+									value="#faff00"
+								/>
+							</td>
+							<td>
+								<input
+									type="color"
+									id="high_color"
+									oninput="colorChange()"
+									value="#ff0000"
+								/>
+							</td>
+						</tr>
+						<tr>
+							<td>Low</td>
+							<td>Mid</td>
+							<td>High</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="./scenario.js"></script>
+</html>
