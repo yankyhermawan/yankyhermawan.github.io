@@ -25,7 +25,7 @@ https://github.com/teknomo/ifn-transport
 2. Run `pip install --no-caache-dir -r requirements.txt`
 3. Run `python main.py`
 
-## URL
+## URL (Currently still has some bugs)
 
 URL: http://backend-ifn.yankyhermawan.xyz
 IP: http://34.101.140.155
@@ -33,6 +33,8 @@ IP: http://34.101.140.155
 Note:
 - Only processed data can be viewed in the website (go to http://backend-ifn.yankyhermawan.xyz/api/getall)
 - Data processing may take a few minutes (1 city can have >100.000 node points)
+- Take a patient, if your screen only show like this:
+![Please Wait](./src/loading.png)
 
 # Endpoints
 
