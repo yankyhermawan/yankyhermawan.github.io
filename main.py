@@ -2,10 +2,15 @@ from flask import Flask, jsonify, request, make_response
 from service.dbService import CreateConnection
 import service.osmService as osmService
 from flask_cors import CORS
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 connection = CreateConnection()
+port = os.environ.get("PORT") or 5000
 
 
 @app.route("/api/getall", methods = ["GET"])
@@ -19,7 +24,6 @@ def get_city_data():
     city = request_body["city"]
     height = request_body["height"]
     width = request_body["width"]
-    print(city, height, width)
     response = {
         "data": osmService.scenario_data(city=city, h=height, w=width)
     }
@@ -27,4 +31,4 @@ def get_city_data():
         
 
 
-app.run(host="localhost", port=3000)
+app.run(port=port)

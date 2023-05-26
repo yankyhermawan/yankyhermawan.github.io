@@ -83,7 +83,6 @@ def scenario_data(city, h, w):
                     'canvas.style.marginLeft = marginleft.toString()+"px";\n'+\
                     'var ctx = canvas.getContext("2d");\n'+\
                     'ctx.lineWidth = 1;\n'
-    print("hello")
     ###     LINK CONGESTION
     for x in range(len(dfCSV)):
         congestion_value = dfCSV["Congestion"].iloc[x]       
