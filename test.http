@@ -5,3 +5,7 @@ Content-Type: application/json
     "height": "100",
     "width": "200"
 }
+
+### GET
+
+GET http://localhost:5000/api/getall
