@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: yankyhermawan/backend-infra
+    image: asia-southeast2-docker.pkg.dev/zeta-embassy-387512/ifn/ifn-transport
     container_name: backend-infra-app
     build: .
     ports:

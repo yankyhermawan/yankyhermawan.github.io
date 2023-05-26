@@ -3,9 +3,15 @@ var t2 = document.getElementById("table2");
 
 var ram = navigator.deviceMemory;
 var with_cong = document.getElementById("with_Congestion");
-var APIURL = "http://localhost:3000/api/data";
+var APIURL = "http://localhost:5000/api/getall";
 var url = "http://localhost:5500/scenario/scenario.html";
 
+async function getData() {
+	const data = await fetch(APIURL);
+	const response = data.json();
+	console.log(response);
+}
+window.onload = getData();
 function scenario() {
 	t1.style.marginLeft = "25%";
 	t1.style.transitionDuration = "1s";

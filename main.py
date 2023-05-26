@@ -13,6 +13,10 @@ connection = CreateConnection()
 port = os.environ.get("PORT") or 5000
 
 
+@app.route("/", methods=["GET"])
+def hello():
+    return "Hello"
+
 @app.route("/api/getall", methods = ["GET"])
 def index():
     data = connection.getAll()
@@ -24,6 +28,9 @@ def get_city_data():
     city = request_body["city"]
     height = request_body["height"]
     width = request_body["width"]
+    if city not in connection.getAll():
+        print(city)
+        return jsonify({"City": city})
     response = {
         "data": osmService.scenario_data(city=city, h=height, w=width)
     }
@@ -31,4 +38,4 @@ def get_city_data():
         
 
 
-app.run(port=port)
+app.run(host='0.0.0.0',port=port)
