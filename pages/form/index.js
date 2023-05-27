@@ -3,7 +3,7 @@ var t2 = document.getElementById("table2");
 
 var ram = navigator.deviceMemory;
 var with_cong = document.getElementById("with_Congestion");
-var APIURL = "http://backend-ifn.yankyhermawan.xyz/api/getall";
+var APIURL = "https://backend-ifn.yankyhermawan.xyz/api/getall";
 var url = "../scenario/";
 
 async function getData() {
